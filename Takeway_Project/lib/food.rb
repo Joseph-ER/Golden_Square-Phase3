@@ -5,11 +5,11 @@ class Food
   end
 
   def food
-     @food_item
+     @food_item.to_s
   end
 
   def price
-    @price
+    @price.to_f
   end
 end
 
