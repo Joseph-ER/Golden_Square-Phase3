@@ -41,13 +41,13 @@ class Takeaway
 
 
   def text_message
-    account_sid = ""
-    auth_token = ""
+    account_sid = ENV['TWILIO_ACCOUNT_SID']
+    auth_token = ENV['TWILIO_AUTH_TOKEN']
     client = Twilio::REST::Client.new(account_sid, auth_token)
     total = @bill.to_s
     
-    from = '+' # Your Twilio number
-    to = '+' # Your mobile phone number
+    from = ENV['TWILIO_NUMBER'] # Your Twilio number
+    to = ENV['MY_NUMBER'] # Your mobile phone number
     
     client.messages.create(
     from: from,
@@ -96,7 +96,7 @@ RSpec.describe Takeaway do
     end
   end
 
-  describe "order# method" do
+  describe "view_order# method" do
     it "returns no error" do
       io = double :io
       tk = Takeaway.new(io)
